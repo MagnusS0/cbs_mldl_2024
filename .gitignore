@@ -218,3 +218,8 @@ pyrightconfig.json
 
 ## Data folder
 .data/
+
+# Large datasets
+dataset-resized/
+garbage_classification_enhanced/
+notebooks/logs/
