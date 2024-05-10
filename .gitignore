@@ -220,6 +220,6 @@ pyrightconfig.json
 .data/
 
 # Large datasets
-dataset-resized/
-garbage_classification_enhanced/
+Dataset/
 notebooks/logs/
+logs/
