@@ -32,11 +32,11 @@ class OneCycleScheduler(tf.keras.callbacks.Callback):
 
 
 def get_callbacks(train_ds, epochs, max_lr):
-    log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    log_dir = "../logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     tensorboard_callback = TensorBoard(log_dir=log_dir, histogram_freq=1)
     early_stopping = EarlyStopping(monitor='val_loss', patience=20)
     checkpoint = ModelCheckpoint(
-        filepath='./models/best_model.keras',
+        filepath='../models/best_model.keras',
         save_best_only=True,
         monitor='val_accuracy',
         verbose=1

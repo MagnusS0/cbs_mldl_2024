@@ -6,7 +6,7 @@ from data_loader import compute_class_weights
 from callbacks import get_callbacks
 
 def compile_and_train(model, train_ds, val_ds, epochs, max_lr=1e-2):
-    class_weights = compute_class_weights("./Dataset/train_directory")
+    class_weights = compute_class_weights("../data/train_directory")
     
     model.compile(
         optimizer=SGD(learning_rate=0.001, momentum=0.9, weight_decay=1e-4),

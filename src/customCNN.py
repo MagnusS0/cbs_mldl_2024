@@ -1,7 +1,6 @@
 import keras
 from functools import partial
 
-from keras.saving import register_keras_serializable
 
 DefaultConv2D = partial(keras.layers.Conv2D, kernel_size=7, strides=1,
                         padding="same", kernel_initializer="he_normal",
