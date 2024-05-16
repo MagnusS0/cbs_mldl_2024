@@ -13,6 +13,18 @@ from sklearn.utils.class_weight import compute_class_weight
 
 
 class ImageAugmenter:
+    """
+    A class that performs image augmentation operations on input images.
+
+    Attributes:
+        random_flip: A `keras_cv.layers.RandomFlip` layer for random flipping of images.
+        crop_and_resize: A `keras_cv.layers.RandomCropAndResize` layer for random cropping and resizing of images.
+
+    Methods:
+        augment_train(images, labels): Applies image augmentation operations on training images.
+        augment_val(images, labels): Applies image normalization on validation images.
+    """
+
     def __init__(self):
         self.random_flip = keras_cv.layers.RandomFlip(mode="horizontal_and_vertical")
         self.crop_and_resize = keras_cv.layers.RandomCropAndResize(
@@ -20,19 +32,11 @@ class ImageAugmenter:
             crop_area_factor=(0.8, 1.0),
             aspect_ratio_factor=(0.9, 1.1)
         )
-        self.rand_augment = keras_cv.layers.RandAugment(
-            augmentations_per_image=3,
-            value_range=(0, 1),
-            magnitude=0.5,
-            magnitude_stddev=0.2,
-            rate=1.0
-        )
 
     def augment_train(self, images, labels):
         images = tf.cast(images, tf.float32) / 255.0
         images = self.random_flip(images, training=True)
         images = self.crop_and_resize(images, training=True)
-        images = self.rand_augment(images, training=True)
         return images, labels
 
     def augment_val(self, images, labels):
@@ -41,6 +45,18 @@ class ImageAugmenter:
 
 
 def load_datasets(train_path, val_path, batch_size):
+    """
+    Loads and preprocesses the training and validation datasets.
+
+    Args:
+        train_path (str): The path to the training dataset directory.
+        val_path (str): The path to the validation dataset directory.
+        batch_size (int): The batch size for training and validation.
+
+    Returns:
+        train_ds (tf.data.Dataset): The preprocessed training dataset.
+        val_ds (tf.data.Dataset): The preprocessed validation dataset.
+    """
     augmenter = ImageAugmenter()
 
     train_ds = keras.utils.image_dataset_from_directory(
@@ -76,7 +92,9 @@ def load_datasets(train_path, val_path, batch_size):
 
 
 def compute_class_weights(dataset_dir):
-    # Extract class weights for imbalanced datasets
+    """ 
+    Extract class weights for imbalanced datasets
+    """
     data = []
     for class_dir in os.listdir(dataset_dir):
         for img in os.listdir(os.path.join(dataset_dir, class_dir)):

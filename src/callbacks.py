@@ -3,7 +3,20 @@ from keras.callbacks import ModelCheckpoint, EarlyStopping, TensorBoard
 import datetime
 import math
 
+# This class is adopted from the following source:
+# https://github.com/ageron/handson-ml3/blob/main/11_training_deep_neural_networks.ipynb
 class OneCycleScheduler(tf.keras.callbacks.Callback):
+    """
+    Callback for implementing the One Cycle Learning Rate policy during training.
+
+    Args:
+        iterations (int): The total number of iterations.
+        max_lr (float): The maximum learning rate.
+        start_lr (float, optional): The initial learning rate. Defaults to max_lr / 10.
+        last_iterations (int, optional): The number of iterations for the last phase. Defaults to iterations // 10 + 1.
+        last_lr (float, optional): The learning rate for the last phase. Defaults to start_lr / 1000.
+    """
+
     def __init__(self, iterations, max_lr=1e-3, start_lr=None,
                  last_iterations=None, last_lr=None):
         self.iterations = iterations

@@ -9,6 +9,18 @@ from sklearn.pipeline import make_pipeline
 import os
 
 def process_image(file_path, label, target_size=(64, 64)):
+    """
+    Preprocesses an image by reading it from the given file path, converting it to RGB if necessary,
+    resizing it to the target size, flattening it, and normalizing its pixel values.
+
+    Args:
+        file_path (str): The path to the image file.
+        label: The label associated with the image.
+        target_size (tuple, optional): The desired size of the image after resizing. Defaults to (64, 64).
+
+    Returns:
+        tuple: A tuple containing the flattened and normalized image array and the label.
+    """
     image = imread(file_path)
     if image.shape[-1] == 4:
         image = rgba2rgb(image)
@@ -20,7 +32,7 @@ def process_image(file_path, label, target_size=(64, 64)):
 
 def preprocess_images_for_svm(directory, target_size=(64, 64)):
     class_names = sorted(os.listdir(directory))
-    # Load images in parallel to speed up the process
+    # Load images and apply pre-processing in parallel
     results = Parallel(n_jobs=-1)(delayed(process_image)(os.path.join(directory, class_name, file_name), label, target_size)
                                   for label, class_name in enumerate(class_names)
                                   for file_name in os.listdir(os.path.join(directory, class_name))

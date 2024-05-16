@@ -8,6 +8,9 @@ DefaultConv2D = partial(keras.layers.Conv2D, kernel_size=3, strides=1,
                         use_bias=False)
 
 
+# This implementation is adapted from the following source:
+# https://github.com/ageron/handson-ml3/blob/main/14_deep_computer_vision_with_cnns.ipynb
+
 @register_keras_serializable(package='Custom', name='ResidualUnit')
 class ResidualUnit(keras.layers.Layer):
     """A custom residual unit layer for ResNet models.
@@ -67,6 +70,9 @@ class ResidualUnit(keras.layers.Layer):
         return cls(**config)
 
 def build_resnet_model(classes:int):
+    """
+    Builds a ResNet-18 model for image classification.
+    """
     model = keras.Sequential([
         keras.layers.Input(shape=(224, 224, 3)),
         DefaultConv2D(64, kernel_size=7, strides=2),
