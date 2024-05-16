@@ -24,7 +24,7 @@ def model(model_name):
     
 build_model = model(MODEL_NAME)
 
-def main(build_model=build_model):
+def main():
     set_random_seeds(42)
     train_ds, val_ds = load_datasets(TRAIN_DATADIR, VAL_DATADIR, BATCH_SIZE) 
     model = build_model(CLASSES) 
