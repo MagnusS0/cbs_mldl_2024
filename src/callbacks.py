@@ -31,7 +31,7 @@ class OneCycleScheduler(tf.keras.callbacks.Callback):
         self.model.optimizer.learning_rate.assign(lr)
 
 
-def get_callbacks(train_ds, epochs):
+def get_callbacks(train_ds, epochs, max_lr):
     log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     tensorboard_callback = TensorBoard(log_dir=log_dir, histogram_freq=1)
     early_stopping = EarlyStopping(monitor='val_loss', patience=20)
@@ -41,6 +41,6 @@ def get_callbacks(train_ds, epochs):
         monitor='val_accuracy',
         verbose=1
     )
-    onecycle = OneCycleScheduler(math.ceil(len(train_ds)) * epochs, max_lr=1e-3)
+    onecycle = OneCycleScheduler(math.ceil(len(train_ds)) * epochs, max_lr=max_lr)
 
-    return [tensorboard_callback, early_stopping, checkpoint]
+    return [tensorboard_callback, early_stopping, checkpoint, onecycle]

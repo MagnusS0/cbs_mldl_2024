@@ -1,4 +1,3 @@
-import tensorflow as tf
 import keras
 from functools import partial
 
@@ -59,7 +58,7 @@ class ResidualUnit(keras.layers.Layer):
         config.update({
                 "filters": self.filters,
                 "strides": self.strides,
-                "activation": tf.keras.activations.serialize(self.activation)
+                "activation": keras.activations.serialize(self.activation)
             })
         return config
 
@@ -67,7 +66,7 @@ class ResidualUnit(keras.layers.Layer):
     def from_config(cls, config):
         return cls(**config)
 
-def build_model(classes:int):
+def build_resnet_model(classes:int):
     model = keras.Sequential([
         keras.layers.Input(shape=(224, 224, 3)),
         DefaultConv2D(64, kernel_size=7, strides=2),
