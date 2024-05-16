@@ -48,18 +48,11 @@ This will start the training process using the default parameters defined in the
 - `EPOCHS`: The number of epochs for training. Default is 35.
 - `MAX_LR`: The maximum learning rate. Default is 1e-2.
 - `CLASSES`: The number of classes. Default is 11.
+- `MODEL_NAME`: The name of the model. Default is 'resnet18'.
   
 The main function in `main.py` uses these constants to load the datasets, build the model, and start the training process.
 
 4. **Customize the training process**: If you want to use a different model or change the training parameters, you can modify the constants in the [main.py](src/main.py) file or pass a different model building function to the main function.
-For example, if you want to use a ResNet model instead of the default CNN model, you can import the build_resnet_model function from src/resnet18.py and pass it to the main function:
-
-```py
-from resnet18 import build_resnet_model
-
-if __name__ == '__main__':
-    main(build_model=build_resnet_model)
-```
 
 ## Output
 The trained model will be saved in the models directory. The training process also generates logs, which are saved in the logs directory.
