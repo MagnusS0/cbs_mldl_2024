@@ -1,4 +1,20 @@
-# cbs_mldl_2024
+# Machine Learning and Deep Learning Course Project (CDSCO1005U)
+This repository contains the final project for the Machine Learning and Deep Learning course (CDSCO1005U). The project involves developing and training machine learning models for image classification tasks.
+
+## Project Structure
+The project is organized into several directories:
+
+- `data/`: Contains the training and validation datasets.
+- `models/`: Contains the trained models.
+- `notebooks/`: Contains Jupyter notebooks for experiments.
+- `src/`: Contains the Python source code for the project.
+## Key Components
+- `src/main.py`: The main script for training deep models.
+- `src/svm_training.py`: Script to training SVM models.
+- `notebooks/experiment_ResNet.ipynb:` A notebook for experimenting with ResNet models.
+- `notebooks/experiment_CNN.ipynb:` A notebook for experimenting with Custom CNN models.
+- `notebooks/experiment_SVM.ipynb:` ` A notebook for experimenting with SVM models.
+
 
 
 ## Training Models with main.py
