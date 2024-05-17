@@ -11,6 +11,7 @@ The project is organized into several directories:
 ## Key Components
 - `src/main.py`: The main script for training deep models.
 - `src/svm_training.py`: Script to training SVM models.
+- `notebooks/test.ipynb`: A Jupyter notebook for testing the trained models.
 - `notebooks/experiment_ResNet.ipynb:` A notebook for experimenting with ResNet models.
 - `notebooks/experiment_CNN.ipynb:` A notebook for experimenting with Custom CNN models.
 - `notebooks/experiment_SVM.ipynb:` ` A notebook for experimenting with SVM models.
