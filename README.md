@@ -1,24 +1,7 @@
 # cbs_mldl_2024
 
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
 
-
-# Training Models with main.py
+## Training Models with main.py
 The [main.py](src/main.py) file in this project is used to train our models. Here's how you can use it:
 
 Prerequisites
@@ -29,7 +12,7 @@ Ensure you have the following installed:
 - Keras 3.2 or later
 - Keras-cv 0.8.2
 
-## Steps
+### Steps
 1. **Set up your environment**: Make sure you have installed all the necessary packages listed in the prerequisites.
 
 2. **Prepare your data**: Unzip the dataset.zip in the /data directory. The data should be in a format that can be read by the load_datasets function in src/data_loader.py.
@@ -54,5 +37,15 @@ The main function in `main.py` uses these constants to load the datasets, build 
 
 4. **Customize the training process**: If you want to use a different model or change the training parameters, you can modify the constants in the [main.py](src/main.py) file or pass a different model building function to the main function.
 
-## Output
+### Output
 The trained model will be saved in the models directory. The training process also generates logs, which are saved in the logs directory.
+
+## Training SVM with svm_training.py
+### Step
+1. **Run the script:** Navigate to the directory containing the svm_training.py script in your terminal and run the following command:
+```sh
+python svm_training.py
+```
+This will start the training process. The script will first load the datasets from the specified directories. It will then create an SVM model with a PCA pipeline and train it using the loaded data.
+
+2. **Check the output:** After the training is completed, the script will evaluate the model's accuracy on the validation data and print the accuracy score. The trained model will be saved as svm_model.pkl in the ../models directory.
